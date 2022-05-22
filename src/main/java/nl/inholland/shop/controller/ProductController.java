@@ -2,6 +2,7 @@ package nl.inholland.shop.controller;
 
 import nl.inholland.shop.model.Product;
 import nl.inholland.shop.service.ProductService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +18,15 @@ public class ProductController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('USER')")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public Product addProduct(@RequestBody Product product) {
+
         return productService.addProduct(product);
     }
 }

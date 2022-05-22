@@ -1,8 +1,6 @@
 package nl.inholland.shop.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,4 +15,7 @@ public class User {
 
     private String username;
     private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Role> roles;
 }
